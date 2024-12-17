@@ -3,7 +3,6 @@ import Ship from "./Ship";
 export default class Gameboard {
   constructor() {
     this.board = [[], [], [], [], [], [], [], [], [], []];
-    this.tempBoard = [...this.board];
     this.carrier = new Ship("Carrier", 5);
     this.battleship = new Ship("Battleship", 4);
     this.cruiser = new Ship("Cruiser", 3);
@@ -15,14 +14,16 @@ export default class Gameboard {
     if (ship.length + x <= 10) {
       // TODO
       // populate given row
+      const tempBoard = [...this.board];
       let i = x;
       for (i; i < x + ship.length; i++) {
-        if (this.board[y][i]) {
+        if (tempBoard[y][i]) {
           return "Can't place a ship here!";
         } else {
-          this.board[y][i] = "s";
+          tempBoard[y][i] = "s";
         }
       }
+      this.board = [...tempBoard];
     } else {
       return "Ship out of bounds!";
     }
