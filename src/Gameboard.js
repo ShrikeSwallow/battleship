@@ -10,22 +10,22 @@ export default class Gameboard {
     this.destroyer = new Ship("Destroyer", 2);
     this.columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   }
-  #placeShipRow = (ship, start) => {
-    if (ship.length + this.columns.indexOf(start[0]) <= 10) {
+  #placeShipRow = (ship, x, y) => {
+    if (ship.length + x <= 10) {
       // TODO
       // populate given row
       const tempBoard = [...this.board];
-      for (let i = start[1]; i < start[1] + ship.length; i++) {
-        if (tempBoard[start[1]] !== undefined) {
+      /*for (let i = x; i < x + ship.length; i++) {
+        if (tempBoard[x] !== undefined) {
         }
-      }
+      }*/
     } else {
       return "Ship out of bounds!";
     }
     return true;
   };
-  #placeShipCol = (ship, start) => {
-    if (ship.length + start[1] <= 10) {
+  #placeShipCol = (ship, x, y) => {
+    if (ship.length + y <= 10) {
       // TODO
       // populate given column
     } else {
@@ -34,7 +34,9 @@ export default class Gameboard {
     return true;
   };
   placeShip = (ship, start, orientation) => {
-    if (orientation === "col") return this.#placeShipCol(ship, start);
-    else return this.#placeShipRow(ship, start);
+    const x = this.columns.indexOf(start[0]);
+    const y = start[1] - 1;
+    if (orientation === "col") return this.#placeShipCol(ship, x, y);
+    else return this.#placeShipRow(ship, x, y);
   };
 }
