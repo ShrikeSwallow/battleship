@@ -5,7 +5,7 @@ import Ship from "./Ship";
 
 test("Place a ship on a board horizontally", () => {
   const gameboard = new Gameboard();
-  expect(gameboard.placeShip(gameboard.submarine, ["H", 0], "row")).toBe(true);
+  expect(gameboard.placeShip(gameboard.submarine, ["A", 1], "row")).toBe(true);
 });
 
 test("Place a ship on a board vertically", () => {
@@ -15,7 +15,7 @@ test("Place a ship on a board vertically", () => {
 
 test("Try to place a ship out of bounds horizontally", () => {
   const gameboard = new Gameboard();
-  expect(gameboard.placeShip(gameboard.submarine, ["I", 0], "row")).toBe(
+  expect(gameboard.placeShip(gameboard.submarine, ["I", 1], "row")).toBe(
     "Ship out of bounds!"
   );
 });
