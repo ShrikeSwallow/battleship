@@ -18,6 +18,21 @@ export default class Gameboard {
       const tempBoard = [...this.board];
       let i = x;
 
+      // place ship and define safe zone above and below it
+      for (i; i < x + ship.length; i++) {
+        if (tempBoard[y][i]) {
+          return "Can't place a ship here!";
+        } else {
+          tempBoard[y][i] = "s";
+          if (y - 1 >= 0) {
+            tempBoard[y - 1][i] = "n";
+          }
+          if (y + 1 <= 9) {
+            tempBoard[y + 1][i] = "n";
+          }
+        }
+      }
+
       // define 'safe zone' points around the ship's corners
       // j is the left edge, k is the right edge
       let j, k;
@@ -42,20 +57,6 @@ export default class Gameboard {
         }
       }
 
-      // place ship and define safe zone above and below it
-      for (i; i < x + ship.length; i++) {
-        if (tempBoard[y][i]) {
-          return "Can't place a ship here!";
-        } else {
-          tempBoard[y][i] = "s";
-          if (y - 1 >= 0) {
-            tempBoard[y - 1][i] = "n";
-          }
-          if (y + 1 <= 9) {
-            tempBoard[y + 1][i] = "n";
-          }
-        }
-      }
       this.board = [...tempBoard];
     } else {
       return "Ship out of bounds!";
@@ -70,6 +71,21 @@ export default class Gameboard {
       // if placement completes without issues, update the main board
       const tempBoard = [...this.board];
       let i = y;
+
+      // place ship and define safe zone to the left and right to it
+      for (i; i < y + ship.length; i++) {
+        if (tempBoard[i][x]) {
+          return "Can't place a ship here!";
+        } else {
+          tempBoard[i][x] = "s";
+          if (x - 1 >= 0) {
+            tempBoard[i][x - 1] = "n";
+          }
+          if (x + 1 <= 9) {
+            tempBoard[i][x + 1] = "n";
+          }
+        }
+      }
 
       // define 'safe zone' points around the ship's corners
       // j is the left edge, k is the right edge
@@ -92,21 +108,6 @@ export default class Gameboard {
         }
         if (x + 1 <= 9) {
           tempBoard[k][x + 1] = "n";
-        }
-      }
-
-      // place ship and define safe zone to the left and right to it
-      for (i; i < y + ship.length; i++) {
-        if (tempBoard[i][x]) {
-          return "Can't place a ship here!";
-        } else {
-          tempBoard[i][x] = "s";
-          if (x - 1 >= 0) {
-            tempBoard[i][x - 1] = "n";
-          }
-          if (x + 1 <= 9) {
-            tempBoard[i][x + 1] = "n";
-          }
         }
       }
       this.board = [...tempBoard];

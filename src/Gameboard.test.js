@@ -38,3 +38,11 @@ test("Try to place a ship out of bounds vertically", () => {
   gameboard.placeShip(gameboard.submarine, ["A", 8], "col");
   expect(gameboard.board).toContain("e");
 });*/
+
+test("Check what happens if placed ship overlaps", () => {
+  const gameboard = new Gameboard();
+  gameboard.placeShip(gameboard.submarine, ["A", 6], "col");
+  expect(gameboard.placeShip(gameboard.submarine, ["A", 6], "row")).toBe(
+    "Can't place a ship here!"
+  );
+});
