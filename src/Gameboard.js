@@ -13,14 +13,45 @@ export default class Gameboard {
   #placeShipRow = (ship, x, y, board) => {
     if (ship.length + x <= 10) {
       // TODO
-      // populate given row
+      // create a temporary board for placement operation
+      // if placement completes without issues, update the main board
       const tempBoard = [...this.board];
       let i = x;
+
+      // define 'safe zone' points around the ship's corners
+      // j is the left edge, k is the right edge
+      let j, k;
+      if (x - 1 >= 0) {
+        j = x - 1;
+        if (y - 1 >= 0) {
+          tempBoard[y - 1][j] = "n";
+        }
+        if (y + 1 <= 9) {
+          tempBoard[y + 1][j] = "n";
+        }
+      }
+      if (x + ship.length <= 9) {
+        k = x + ship.length;
+        if (y - 1 >= 0) {
+          tempBoard[y - 1][k] = "n";
+        }
+        if (y + 1 <= 9) {
+          tempBoard[y + 1][k] = "n";
+        }
+      }
+
+      // place ship and define safe zone above and below it
       for (i; i < x + ship.length; i++) {
         if (tempBoard[y][i]) {
           return "Can't place a ship here!";
         } else {
           tempBoard[y][i] = "s";
+          if (y - 1 >= 0) {
+            tempBoard[y - 1][i] = "n";
+          }
+          if (y + 1 <= 9) {
+            tempBoard[y + 1][i] = "n";
+          }
         }
       }
       this.board = [...tempBoard];
