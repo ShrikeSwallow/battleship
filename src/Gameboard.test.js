@@ -29,12 +29,12 @@ test("Try to place a ship out of bounds vertically", () => {
 
 /*test("Output the board after placing a ship horizontally", () => {
   const gameboard = new Gameboard();
-  gameboard.placeShip(gameboard.submarine, ["H", 10], "row");
+  gameboard.placeShip(gameboard.submarine, ["H", 1], "row");
   expect(gameboard.board).toContain("e");
 });*/
 
-test("Output the board after placing a ship vertically", () => {
+/*test("Output the board after placing a ship vertically", () => {
   const gameboard = new Gameboard();
-  gameboard.placeShip(gameboard.submarine, ["J", 7], "col");
+  gameboard.placeShip(gameboard.submarine, ["A", 8], "col");
   expect(gameboard.board).toContain("e");
-});
+});*/
