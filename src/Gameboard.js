@@ -90,7 +90,7 @@ export default class Gameboard {
         if (x - 1 >= 0) {
           tempBoard[k][x - 1] = "n";
         }
-        if (y + 1 <= 9) {
+        if (x + 1 <= 9) {
           tempBoard[k][x + 1] = "n";
         }
       }
@@ -104,7 +104,7 @@ export default class Gameboard {
           if (x - 1 >= 0) {
             tempBoard[i][x - 1] = "n";
           }
-          if (y + 1 <= 9) {
+          if (x + 1 <= 9) {
             tempBoard[i][x + 1] = "n";
           }
         }
