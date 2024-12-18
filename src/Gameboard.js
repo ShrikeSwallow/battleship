@@ -10,7 +10,7 @@ export default class Gameboard {
     this.destroyer = new Ship("Destroyer", 2);
     this.columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   }
-  #placeShipRow = (ship, x, y, board) => {
+  #placeShipRow = (ship, x, y) => {
     if (ship.length + x <= 10) {
       // TODO
       // create a temporary board for placement operation
@@ -23,6 +23,7 @@ export default class Gameboard {
       let j, k;
       if (x - 1 >= 0) {
         j = x - 1;
+        tempBoard[y][j] = "n";
         if (y - 1 >= 0) {
           tempBoard[y - 1][j] = "n";
         }
@@ -32,6 +33,7 @@ export default class Gameboard {
       }
       if (x + ship.length <= 9) {
         k = x + ship.length;
+        tempBoard[y][k] = "n";
         if (y - 1 >= 0) {
           tempBoard[y - 1][k] = "n";
         }
@@ -60,10 +62,54 @@ export default class Gameboard {
     }
     return true;
   };
-  #placeShipCol = (ship, x, y, board) => {
+  #placeShipCol = (ship, x, y) => {
     if (ship.length + y <= 10) {
       // TODO
       // populate given column
+      // create a temporary board for placement operation
+      // if placement completes without issues, update the main board
+      const tempBoard = [...this.board];
+      let i = y;
+
+      // define 'safe zone' points around the ship's corners
+      // j is the left edge, k is the right edge
+      let j, k;
+      if (y - 1 >= 0) {
+        j = y - 1;
+        tempBoard[j][x] = "n";
+        if (x - 1 >= 0) {
+          tempBoard[j][x - 1] = "n";
+        }
+        if (x + 1 <= 9) {
+          tempBoard[j][x + 1] = "n";
+        }
+      }
+      if (y + ship.length <= 9) {
+        k = y + ship.length;
+        tempBoard[k][x] = "n";
+        if (x - 1 >= 0) {
+          tempBoard[k][x - 1] = "n";
+        }
+        if (y + 1 <= 9) {
+          tempBoard[k][x + 1] = "n";
+        }
+      }
+
+      // place ship and define safe zone to the left and right to it
+      for (i; i < y + ship.length; i++) {
+        if (tempBoard[i][x]) {
+          return "Can't place a ship here!";
+        } else {
+          tempBoard[i][x] = "s";
+          if (x - 1 >= 0) {
+            tempBoard[i][x - 1] = "n";
+          }
+          if (y + 1 <= 9) {
+            tempBoard[i][x + 1] = "n";
+          }
+        }
+      }
+      this.board = [...tempBoard];
     } else {
       return "Ship out of bounds!";
     }
@@ -72,8 +118,7 @@ export default class Gameboard {
   placeShip = (ship, start, orientation) => {
     const x = this.columns.indexOf(start[0]);
     const y = start[1] - 1;
-    if (orientation === "col")
-      return this.#placeShipCol(ship, x, y, this.tempBoard);
-    else return this.#placeShipRow(ship, x, y, this.tempBoard);
+    if (orientation === "col") return this.#placeShipCol(ship, x, y);
+    else return this.#placeShipRow(ship, x, y);
   };
 }

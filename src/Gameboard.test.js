@@ -29,6 +29,6 @@ test("Try to place a ship out of bounds vertically", () => {
 
 test("Output the board after placing a ship", () => {
   const gameboard = new Gameboard();
-  gameboard.placeShip(gameboard.submarine, ["F", 1], "row");
+  gameboard.placeShip(gameboard.submarine, ["A", 1], "col");
   expect(gameboard.board).toContain("e");
 });
