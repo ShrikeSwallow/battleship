@@ -3,17 +3,23 @@ import Ship from "./Ship";
 export default class Gameboard {
   constructor() {
     this.board = [[], [], [], [], [], [], [], [], [], []];
-    this.carrier = new Ship("Carrier", 5);
+    /*this.carrier = new Ship("Carrier", 5);
     this.battleship = new Ship("Battleship", 4);
     this.cruiser = new Ship("Cruiser", 3);
     this.submarine = new Ship("Submarine", 3);
-    this.destroyer = new Ship("Destroyer", 2);
+    this.destroyer = new Ship("Destroyer", 2);*/
+    this.ships = [
+      new Ship("Carrier", 5),
+      new Ship("Battleship", 4),
+      new Ship("Cruiser", 3),
+      new Ship("Submarine", 3),
+      new Ship("Destroyer", 2),
+    ];
     this.columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     this.sunkShips = 0;
   }
   #placeShipRow = (ship, x, y) => {
     if (ship.length + x <= 10) {
-      // TODO
       // create a temporary board for placement operation
       // if placement completes without issues, update the main board
       const tempBoard = [...this.board];
@@ -66,8 +72,6 @@ export default class Gameboard {
   };
   #placeShipCol = (ship, x, y) => {
     if (ship.length + y <= 10) {
-      // TODO
-      // populate given column
       // create a temporary board for placement operation
       // if placement completes without issues, update the main board
       const tempBoard = [...this.board];
@@ -135,6 +139,7 @@ export default class Gameboard {
 
     const target = this.board[y][x];
     switch (target) {
+      /*
       case "Carrier":
         this.board[y][x] = "X";
         this.carrier.hit();
@@ -164,20 +169,31 @@ export default class Gameboard {
         this.destroyer.hit();
         if (this.destroyer.isSunk()) this.#addSunkShip(this.destroyer);
         return "Hit!";
-
+        */
       case "x":
         return "Try again!";
 
       case "X":
         return "Try again!";
 
+      case undefined:
+        this.board[y][x] = "x";
+        return "Miss!";
+
       case "n":
         this.board[y][x] = "x";
         return "Miss!";
 
       default:
-        this.board[y][x] = "x";
-        return "Miss!";
+        const shipName = this.board[y][x];
+        this.ships.forEach((ship) => {
+          if (ship.name === shipName) {
+            this.board[y][x] = "X";
+            ship.hit();
+            if (ship.isSunk()) this.#addSunkShip(ship);
+          }
+        });
+        return "Hit!";
     }
   };
 }
