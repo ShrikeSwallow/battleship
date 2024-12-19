@@ -139,37 +139,6 @@ export default class Gameboard {
 
     const target = this.board[y][x];
     switch (target) {
-      /*
-      case "Carrier":
-        this.board[y][x] = "X";
-        this.carrier.hit();
-        if (this.carrier.isSunk()) this.#addSunkShip(this.carrier);
-        return "Hit!";
-
-      case "Battleship":
-        this.board[y][x] = "X";
-        this.battleship.hit();
-        if (this.battleship.isSunk()) this.#addSunkShip(this.battleship);
-        return "Hit!";
-
-      case "Cruiser":
-        this.board[y][x] = "X";
-        this.cruiser.hit();
-        if (this.cruiser.isSunk()) this.#addSunkShip(this.cruiser);
-        return "Hit!";
-
-      case "Submarine":
-        this.board[y][x] = "X";
-        this.submarine.hit();
-        if (this.submarine.isSunk()) this.#addSunkShip(this.submarine);
-        return "Hit!";
-
-      case "Destroyer":
-        this.board[y][x] = "X";
-        this.destroyer.hit();
-        if (this.destroyer.isSunk()) this.#addSunkShip(this.destroyer);
-        return "Hit!";
-        */
       case "x":
         return "Try again!";
 
