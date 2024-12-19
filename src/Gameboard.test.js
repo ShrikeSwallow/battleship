@@ -17,14 +17,14 @@ test("Place a ship on a board vertically", () => {
 
 test("Try to place a ship out of bounds horizontally", () => {
   //const gameboard = new Gameboard();
-  expect(gameboard.placeShip(gameboard.ships[3], ["I", 1], "row")).toBe(
+  expect(gameboard.placeShip(gameboard.ships[3], ["J", 1], "row")).toBe(
     "Ship out of bounds!"
   );
 });
 
 test("Try to place a ship out of bounds vertically", () => {
   //const gameboard = new Gameboard();
-  expect(gameboard.placeShip(gameboard.ships[3], ["A", 9], "col")).toBe(
+  expect(gameboard.placeShip(gameboard.ships[3], ["A", 10], "col")).toBe(
     "Ship out of bounds!"
   );
 });
@@ -59,6 +59,19 @@ test("Function receiveAttack 'hits'.", () => {
 
 test("Function receiveAttack 'hits' already targeted spot.", () => {
   expect(gameboard.receiveAttack("A", 1)).toBe("Try again!");
+});
+
+test("Sunk the last ship", () => {
+  gameboard.sunkShips = 4;
+  gameboard.placeShip(gameboard.ships[4], ["E", 1], "row");
+  gameboard.receiveAttack("E", 1);
+
+  expect(gameboard.receiveAttack("F", 1)).toBe(`Hit!
+    Destroyer is sunk!
+    Game over!`);
+
+  //gameboard.receiveAttack("F", 1);
+  //expect(gameboard.sunkShips).toBe(5);
 });
 
 /*test("Display gameboard", () => {

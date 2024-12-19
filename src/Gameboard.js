@@ -130,7 +130,6 @@ export default class Gameboard {
 
   #addSunkShip = (ship) => {
     this.sunkShips += 1;
-    return `${ship.name} has been sunk.`;
   };
 
   receiveAttack = (col, row) => {
@@ -154,15 +153,25 @@ export default class Gameboard {
         return "Miss!";
 
       default:
+        let message = "";
         const shipName = this.board[y][x];
+        this.board[y][x] = "X";
         this.ships.forEach((ship) => {
           if (ship.name === shipName) {
-            this.board[y][x] = "X";
             ship.hit();
-            if (ship.isSunk()) this.#addSunkShip(ship);
+            message = `Hit!`;
+            if (ship.isSunk()) {
+              this.#addSunkShip(ship);
+              message = `${message}
+    ${ship.name} is sunk!`;
+              if (this.sunkShips === this.ships.length) {
+                message = `${message}
+    Game over!`;
+              }
+            }
           }
         });
-        return "Hit!";
+        return message;
     }
   };
 }

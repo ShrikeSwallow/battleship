@@ -3,12 +3,15 @@ export default class Ship {
     this.name = name;
     this.length = length;
     this.hits = 0;
-    this.sunk = false;
   }
   hit = () => {
-    return (this.hits += 1);
+    this.hits += 1;
   };
   isSunk = () => {
-    return this.hits >= this.length ? true : false;
+    if (this.hits < this.length) {
+      return false;
+    } else {
+      return true;
+    }
   };
 }
