@@ -23,7 +23,7 @@ export default class Gameboard {
         if (tempBoard[y][i]) {
           return "Can't place a ship here!";
         } else {
-          tempBoard[y][i] = "s";
+          tempBoard[y][i] = ship.name;
           if (y - 1 >= 0) {
             tempBoard[y - 1][i] = "n";
           }
@@ -77,7 +77,7 @@ export default class Gameboard {
         if (tempBoard[i][x]) {
           return "Can't place a ship here!";
         } else {
-          tempBoard[i][x] = "s";
+          tempBoard[i][x] = ship.name;
           if (x - 1 >= 0) {
             tempBoard[i][x - 1] = "n";
           }
