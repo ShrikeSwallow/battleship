@@ -9,6 +9,7 @@ export default class Gameboard {
     this.submarine = new Ship("Submarine", 3);
     this.destroyer = new Ship("Destroyer", 2);
     this.columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    this.sunkShips = 0;
   }
   #placeShipRow = (ship, x, y) => {
     if (ship.length + x <= 10) {
@@ -121,5 +122,62 @@ export default class Gameboard {
     const y = start[1] - 1;
     if (orientation === "col") return this.#placeShipCol(ship, x, y);
     else return this.#placeShipRow(ship, x, y);
+  };
+
+  #addSunkShip = (ship) => {
+    this.sunkShips += 1;
+    return `${ship.name} has been sunk.`;
+  };
+
+  receiveAttack = (col, row) => {
+    const x = this.columns.indexOf(col);
+    const y = row - 1;
+
+    const target = this.board[y][x];
+    switch (target) {
+      case "Carrier":
+        this.board[y][x] = "X";
+        this.carrier.hit();
+        if (this.carrier.isSunk()) this.#addSunkShip(this.carrier);
+        return "Hit!";
+
+      case "Battleship":
+        this.board[y][x] = "X";
+        this.battleship.hit();
+        if (this.battleship.isSunk()) this.#addSunkShip(this.battleship);
+        return "Hit!";
+
+      case "Cruiser":
+        this.board[y][x] = "X";
+        this.cruiser.hit();
+        if (this.cruiser.isSunk()) this.#addSunkShip(this.cruiser);
+        return "Hit!";
+
+      case "Submarine":
+        this.board[y][x] = "X";
+        this.submarine.hit();
+        if (this.submarine.isSunk()) this.#addSunkShip(this.submarine);
+        return "Hit!";
+
+      case "Destroyer":
+        this.board[y][x] = "X";
+        this.destroyer.hit();
+        if (this.destroyer.isSunk()) this.#addSunkShip(this.destroyer);
+        return "Hit!";
+
+      case "x":
+        return "Try again!";
+
+      case "X":
+        return "Try again!";
+
+      case "n":
+        this.board[y][x] = "x";
+        return "Miss!";
+
+      default:
+        this.board[y][x] = "x";
+        return "Miss!";
+    }
   };
 }
