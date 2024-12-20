@@ -153,7 +153,7 @@ export default class Gameboard {
         return "Miss!";
 
       default:
-        let message = "";
+        let message;
         const shipName = this.board[y][x];
         this.board[y][x] = "X";
         this.ships.forEach((ship) => {
@@ -162,11 +162,9 @@ export default class Gameboard {
             message = `Hit!`;
             if (ship.isSunk()) {
               this.#addSunkShip(ship);
-              message = `${message}
-    ${ship.name} is sunk!`;
+              message = `Hit! ${ship.name} is sunk!`;
               if (this.sunkShips === this.ships.length) {
-                message = `${message}
-    Game over!`;
+                message = `Game over!`;
               }
             }
           }
