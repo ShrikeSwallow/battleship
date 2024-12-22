@@ -11,4 +11,15 @@ export default class Display {
     body.appendChild(header);
     body.appendChild(main);
   };
+  drawNewGame = () => {
+    const main = document.querySelector("main");
+    main.innerHTML = "";
+    const controlBtns = document.createElement("div");
+    controlBtns.classList.add = "control-buttons";
+    const newGameBtn = document.createElement("button");
+    newGameBtn.classList.add = "new-game-button";
+    newGameBtn.textContent = "New Game";
+    controlBtns.appendChild(newGameBtn);
+    main.appendChild(controlBtns);
+  };
 }

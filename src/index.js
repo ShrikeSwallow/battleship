@@ -3,3 +3,4 @@ import Display from "./Display";
 
 const display = new Display();
 display.initialize();
+display.drawNewGame();
