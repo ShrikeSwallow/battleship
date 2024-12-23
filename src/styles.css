@@ -1,1 +1,20 @@
 @import "../node_modules/modern-normalize/";
+
+html {
+  background-color: #cffafe;
+}
+
+body {
+  margin: 0 10%;
+  background-color: #a5f3fc;
+  display: grid;
+  grid-template-rows: 10vh 90vh;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  box-shadow: 0px 0px 20px 3px #083344;
+}
+
+header,
+main {
+}
