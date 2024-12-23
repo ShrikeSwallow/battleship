@@ -1,7 +1,7 @@
 import "./styles.css";
 import Display from "./Display";
 
-const display = new Display();
+export const display = new Display();
 display.initialize();
 display.drawNewGame();
 

@@ -8,18 +8,21 @@ export default class Display {
     const title = document.createElement("h1");
     title.textContent = "Battleships";
     header.appendChild(title);
+
+    const controls = document.createElement("div");
+    controls.classList.add("controls");
+    main.appendChild(controls);
+
     body.appendChild(header);
     body.appendChild(main);
   };
   drawNewGame = () => {
-    const main = document.querySelector("main");
-    main.innerHTML = "";
-    const controlBtns = document.createElement("div");
-    controlBtns.classList.add("control-buttons");
+    const controls = document.querySelector(".controls");
     const newGameBtn = document.createElement("button");
     newGameBtn.classList.add("new-game-button");
+    newGameBtn.setAttribute("type", "button");
     newGameBtn.textContent = "New Game";
-    controlBtns.appendChild(newGameBtn);
-    main.appendChild(controlBtns);
+    controls.appendChild(newGameBtn);
   };
+  drawStartForm = () => {};
 }
