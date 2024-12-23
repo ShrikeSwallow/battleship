@@ -15,9 +15,9 @@ export default class Display {
     const main = document.querySelector("main");
     main.innerHTML = "";
     const controlBtns = document.createElement("div");
-    controlBtns.classList.add = "control-buttons";
+    controlBtns.classList.add("control-buttons");
     const newGameBtn = document.createElement("button");
-    newGameBtn.classList.add = "new-game-button";
+    newGameBtn.classList.add("new-game-button");
     newGameBtn.textContent = "New Game";
     controlBtns.appendChild(newGameBtn);
     main.appendChild(controlBtns);
