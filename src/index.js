@@ -1,6 +1,6 @@
 import "./styles.css";
 import Display from "./Display";
-import { prepNewGame, resetGame } from "./callbacks";
+import { prepNewGame, resetGame, startGame } from "./callbacks";
 
 export const display = new Display();
 display.initialize();
