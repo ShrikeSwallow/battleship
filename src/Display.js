@@ -27,7 +27,7 @@ export default class Display {
   drawStartForm = () => {
     const controls = document.querySelector(".controls");
     const startForm = document.createElement("form");
-    startForm.classList.add("start-form");
+    startForm.classList.add("start-form", "hidden");
 
     const legend = document.createElement("legend");
     const h2 = document.createElement("h2");
@@ -121,5 +121,13 @@ export default class Display {
 
     startForm.appendChild(legend);
     controls.appendChild(startForm);
+  };
+  toggleNewGameBtn = () => {
+    const newGameBtn = document.querySelector(".new-game-button");
+    newGameBtn.classList.toggle("hidden");
+  };
+  toggleStartForm = () => {
+    const startForm = document.querySelector(".start-form");
+    startForm.classList.toggle("hidden");
   };
 }
