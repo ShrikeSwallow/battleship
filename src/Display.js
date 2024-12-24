@@ -120,11 +120,13 @@ export default class Display {
     formBtns.classList.add("form-field", "form-buttons");
 
     const startGameBtn = document.createElement("button");
+    startGameBtn.classList.add("start-game-btn");
     startGameBtn.type = "submit";
     startGameBtn.textContent = "Start Game";
     formBtns.appendChild(startGameBtn);
 
     const cancelBtn = document.createElement("button");
+    cancelBtn.classList.add("cancel-btn");
     cancelBtn.type = "reset";
     cancelBtn.textContent = "Cancel";
     formBtns.appendChild(cancelBtn);
