@@ -41,6 +41,8 @@ export default class Display {
     vsH3.textContent = "Choose your opponent:";
     versusMode.appendChild(vsH3);
 
+    const radioDivOne = document.createElement("div");
+    radioDivOne.classList.add("radio-field");
     const vsCpu = document.createElement("input");
     vsCpu.type = "radio";
     vsCpu.id = "vs-cpu";
@@ -50,6 +52,12 @@ export default class Display {
     const vsCpuLabel = document.createElement("label");
     vsCpuLabel.setAttribute("for", vsCpu.id);
     vsCpuLabel.textContent = "CPU";
+
+    radioDivOne.appendChild(vsCpu);
+    radioDivOne.appendChild(vsCpuLabel);
+
+    const radioDivTwo = document.createElement("div");
+    radioDivTwo.classList.add("radio-field");
 
     const vsP2 = document.createElement("input");
     vsP2.type = "radio";
@@ -61,10 +69,12 @@ export default class Display {
     vsP2Label.setAttribute("for", vsP2.id);
     vsP2Label.textContent = "Player 2";
 
-    versusMode.appendChild(vsCpu);
-    versusMode.appendChild(vsCpuLabel);
-    versusMode.appendChild(vsP2);
-    versusMode.appendChild(vsP2Label);
+    radioDivTwo.appendChild(vsP2);
+    radioDivTwo.appendChild(vsP2Label);
+
+    versusMode.appendChild(radioDivOne);
+    versusMode.appendChild(radioDivTwo);
+
     legend.appendChild(versusMode);
 
     // Player(s) info
