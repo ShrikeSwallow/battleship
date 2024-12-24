@@ -9,3 +9,9 @@ export const prepNewGame = () => {
   vsP2.addEventListener("click", display.showP2);
   vsCpu.addEventListener("click", display.hideP2);
 };
+
+export const resetGame = () => {
+  display.toggleNewGameBtn();
+  display.toggleStartForm();
+  display.hideP2();
+};
