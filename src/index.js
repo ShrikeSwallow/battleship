@@ -1,6 +1,6 @@
 import "./styles.css";
 import Display from "./Display";
-import { startNewGame } from "./callbacks";
+import { prepNewGame } from "./callbacks";
 
 export const display = new Display();
 display.initialize();
@@ -8,4 +8,4 @@ display.drawNewGame();
 display.drawStartForm();
 
 const newGameBtn = document.querySelector(".new-game-button");
-newGameBtn.addEventListener("click", startNewGame);
+newGameBtn.addEventListener("click", prepNewGame);

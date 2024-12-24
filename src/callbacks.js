@@ -1,7 +1,7 @@
 import Display from "./Display";
 import { display } from "./index.js";
 
-export const startNewGame = () => {
+export const prepNewGame = () => {
   display.toggleNewGameBtn();
   display.toggleStartForm();
   const vsP2 = document.querySelector("#vs-p2");
