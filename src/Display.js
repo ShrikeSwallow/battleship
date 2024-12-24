@@ -99,11 +99,13 @@ export default class Display {
     const p2Div = document.createElement("div");
     p2Div.classList.add("player-field");
     const p2 = document.createElement("input");
+    p2.classList.add("hidden");
     p2.type = "text";
     p2.id = "p2";
     p2.name = "p2";
 
     const p2Label = document.createElement("label");
+    p2Label.classList.add("hidden");
     p2Label.setAttribute("for", p2.id);
     p2Label.textContent = "Player 2's Name:";
 
@@ -139,5 +141,17 @@ export default class Display {
   toggleStartForm = () => {
     const startForm = document.querySelector(".start-form");
     startForm.classList.toggle("hidden");
+  };
+  showP2 = () => {
+    const p2 = document.querySelector("#p2");
+    const p2Label = document.querySelector("label[for='p2']");
+    p2.classList.remove("hidden");
+    p2Label.classList.remove("hidden");
+  };
+  hideP2 = () => {
+    const p2 = document.querySelector("#p2");
+    const p2Label = document.querySelector("label[for='p2']");
+    p2.classList.add("hidden");
+    p2Label.classList.add("hidden");
   };
 }

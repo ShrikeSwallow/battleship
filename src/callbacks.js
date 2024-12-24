@@ -4,4 +4,8 @@ import { display } from "./index.js";
 export const startNewGame = () => {
   display.toggleNewGameBtn();
   display.toggleStartForm();
+  const vsP2 = document.querySelector("#vs-p2");
+  const vsCpu = document.querySelector("#vs-cpu");
+  vsP2.addEventListener("click", display.showP2);
+  vsCpu.addEventListener("click", display.hideP2);
 };
