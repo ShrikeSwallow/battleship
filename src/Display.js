@@ -48,6 +48,7 @@ export default class Display {
     vsCpu.id = "vs-cpu";
     vsCpu.name = "versus-mode";
     vsCpu.value = "cpu";
+    vsCpu.checked = "checked";
 
     const vsCpuLabel = document.createElement("label");
     vsCpuLabel.setAttribute("for", vsCpu.id);
@@ -155,5 +156,30 @@ export default class Display {
     const p2Label = document.querySelector("label[for='p2']");
     p2.classList.add("hidden");
     p2Label.classList.add("hidden");
+  };
+  drawBoards = () => {
+    const controls = document.querySelector(".controls");
+    const boards = document.createElement("div");
+    boards.classList.add("boards");
+    const playerBoard = document.createElement("div");
+    playerBoard.classList.add("board", "player-board");
+    const oppBoard = document.createElement("div");
+    oppBoard.classList.add("board", "opp-board");
+    boards.appendChild(playerBoard);
+    boards.appendChild(oppBoard);
+    controls.appendChild(boards);
+    this.drawOppBoard();
+  };
+  drawOppBoard = () => {
+    const oppBoard = document.querySelector(".opp-board");
+    let row, col;
+    const columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    for (row = 0; row < 10; row++) {
+      for (col = 0; col < 10; col++) {
+        const cell = document.createElement("div");
+        cell.classList.add("cell", `${columns[col]}${row + 1}`);
+        oppBoard.appendChild(cell);
+      }
+    }
   };
 }

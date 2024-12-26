@@ -1,4 +1,4 @@
-import { display } from "./index.js";
+import { display, players } from "./index.js";
 import Player from "./Player.js";
 
 export const prepNewGame = () => {
@@ -18,10 +18,15 @@ export const resetGame = () => {
 
 export const startGame = (event) => {
   event.preventDefault();
-  console.log(event);
   const p1 = document.querySelector("#p1");
   const p2 = document.querySelector("input[name='versus-mode']:checked");
-  console.log(p2.value);
   const playerOne = new Player(p1.value, "p1");
   const playerTwo = new Player(p2.value, "p2");
+  players.push(playerOne);
+  players.push(playerTwo);
+  const startForm = document.querySelector(".start-form");
+  //startForm.reset();
+  display.toggleStartForm();
+  display.drawBoards();
+  console.log(players);
 };
