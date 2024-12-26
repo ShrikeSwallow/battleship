@@ -168,7 +168,20 @@ export default class Display {
     boards.appendChild(playerBoard);
     boards.appendChild(oppBoard);
     controls.appendChild(boards);
+    this.drawPlayerBoard();
     this.drawOppBoard();
+  };
+  drawPlayerBoard = () => {
+    const playerBoard = document.querySelector(".player-board");
+    let row, col;
+    const columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    for (row = 0; row < 10; row++) {
+      for (col = 0; col < 10; col++) {
+        const cell = document.createElement("div");
+        cell.classList.add("cell", `${columns[col]}${row + 1}`);
+        playerBoard.appendChild(cell);
+      }
+    }
   };
   drawOppBoard = () => {
     const oppBoard = document.querySelector(".opp-board");
