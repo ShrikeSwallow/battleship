@@ -182,7 +182,8 @@ export default class Display {
     for (row = 0; row < 10; row++) {
       for (col = 0; col < 10; col++) {
         const cell = document.createElement("div");
-        cell.classList.add("cell", `${columns[col]}${row + 1}`);
+        cell.classList.add("cell");
+        cell.id = `p1-${columns[col]}${row + 1}`;
         if (
           players[0].gameboard.board[row][col] !== undefined &&
           players[0].gameboard.board[row][col] !== "n"
@@ -212,7 +213,8 @@ export default class Display {
     for (row = 0; row < 10; row++) {
       for (col = 0; col < 10; col++) {
         const cell = document.createElement("div");
-        cell.classList.add("cell", `${columns[col]}${row + 1}`);
+        cell.classList.add("cell");
+        cell.id = `p2-${columns[col]}${row + 1}`;
         oppBoard.appendChild(cell);
       }
     }
