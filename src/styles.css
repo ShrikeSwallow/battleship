@@ -81,3 +81,23 @@ legend {
 .cell {
   border: 1px solid gray;
 }
+
+.carrier {
+  background-color: #075985;
+}
+
+.battleship {
+  background-color: #0284c7;
+}
+
+.cruiser {
+  background-color: #9333ea;
+}
+
+.submarine {
+  background-color: #27272a;
+}
+
+.destroyer {
+  background-color: #ef4444;
+}

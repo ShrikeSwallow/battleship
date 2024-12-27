@@ -184,11 +184,19 @@ export default class Display {
           players[0].gameboard.board[row][col] !== undefined &&
           players[0].gameboard.board[row][col] !== "n"
         ) {
+          if (players[0].gameboard.board[row][col].length > 1) {
+            cell.classList.add(
+              `${players[0].gameboard.board[row][col].toLowerCase()}`
+            );
+          }
+          /* 
           const cellContent = document.createElement("p");
           cellContent.textContent = players[0].gameboard.board[row][
             col
           ].substring(0, 3);
+          
           cell.appendChild(cellContent);
+          */
         }
         playerBoard.appendChild(cell);
       }
