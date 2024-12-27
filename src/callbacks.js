@@ -27,6 +27,35 @@ export const startGame = (event) => {
   const startForm = document.querySelector(".start-form");
   //startForm.reset();
   display.toggleStartForm();
+  fillPlayerOneBoard();
   display.drawBoards();
   console.log(players);
+};
+
+const fillPlayerOneBoard = () => {
+  players[0].gameboard.placeShip(
+    players[0].gameboard.ships[0],
+    ["A", 1],
+    "row"
+  );
+  players[0].gameboard.placeShip(
+    players[0].gameboard.ships[1],
+    ["C", 3],
+    "row"
+  );
+  players[0].gameboard.placeShip(
+    players[0].gameboard.ships[2],
+    ["H", 8],
+    "col"
+  );
+  players[0].gameboard.placeShip(
+    players[0].gameboard.ships[3],
+    ["F", 5],
+    "row"
+  );
+  players[0].gameboard.placeShip(
+    players[0].gameboard.ships[4],
+    ["B", 9],
+    "row"
+  );
 };
