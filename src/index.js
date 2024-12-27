@@ -7,6 +7,7 @@ export const players = [];
 display.initialize();
 display.drawNewGame();
 display.drawStartForm();
+display.drawBoardsContainer();
 
 const newGameBtn = document.querySelector(".new-game-button");
 newGameBtn.addEventListener("click", prepNewGame);

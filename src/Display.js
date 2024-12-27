@@ -158,17 +158,20 @@ export default class Display {
     p2.classList.add("hidden");
     p2Label.classList.add("hidden");
   };
-  drawBoards = () => {
+  drawBoardsContainer = () => {
     const controls = document.querySelector(".controls");
     const boards = document.createElement("div");
     boards.classList.add("boards");
+    controls.appendChild(boards);
+  };
+  drawBoards = () => {
+    const boards = document.querySelector(".boards");
     const playerBoard = document.createElement("div");
     playerBoard.classList.add("board", "player-board");
     const oppBoard = document.createElement("div");
     oppBoard.classList.add("board", "opp-board");
     boards.appendChild(playerBoard);
     boards.appendChild(oppBoard);
-    controls.appendChild(boards);
     this.drawPlayerBoard();
     this.drawOppBoard();
   };
