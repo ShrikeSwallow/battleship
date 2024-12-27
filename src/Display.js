@@ -180,7 +180,10 @@ export default class Display {
       for (col = 0; col < 10; col++) {
         const cell = document.createElement("div");
         cell.classList.add("cell", `${columns[col]}${row + 1}`);
-        if (players[0].gameboard.board[row][col] !== undefined) {
+        if (
+          players[0].gameboard.board[row][col] !== undefined &&
+          players[0].gameboard.board[row][col] !== "n"
+        ) {
           const cellContent = document.createElement("p");
           cellContent.textContent = players[0].gameboard.board[row][
             col
