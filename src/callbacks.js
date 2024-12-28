@@ -88,3 +88,11 @@ const fillPlayerTwoBoard = () => {
     "row"
   );
 };
+
+export const playGame = (event) => {
+  console.log(event.target);
+  if (event.target.id.includes("p2-")) {
+    console.log(event.target.id.substring(3, 4));
+    console.log(event.target.id.substring(4, 6));
+  }
+};
