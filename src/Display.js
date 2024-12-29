@@ -213,9 +213,12 @@ export default class Display {
     }
   };
   updateCell = (cellId, message) => {
-    if (message === "Game over!" || message === "Try again!") return;
+    if (message === "Try again!") return;
     const cell = document.querySelector(`#${cellId}`);
-    if (message.includes("Hit!")) {
+    if (message === "Game over!") {
+      cell.textContent = "X";
+      return;
+    } else if (message.includes("Hit!")) {
       cell.textContent = "X";
     } else if (message === "Miss!") {
       cell.textContent = "x";

@@ -17,30 +17,32 @@ export const resetGame = () => {
 };
 
 const getCoordinates = (event) => {
-  if (event.target.className.includes("cell")) {
-    const col = event.target.id.substring(3, 4);
-    const row = Number.parseInt(event.target.id.substring(4, 6));
-    console.log(col);
-    console.log(row);
-    return [col, row];
-  }
+  const col = event.target.id.substring(3, 4);
+  const row = Number.parseInt(event.target.id.substring(4, 6));
+  console.log(col);
+  console.log(row);
+  return [col, row];
 };
 
 export const playGame = () => {
   let coordinates = [];
+  let message;
   const boards = document.querySelector(".opp-board");
   boards.addEventListener(
     "click",
     (event) => {
-      coordinates = getCoordinates(event);
-      console.log({ coordinates });
-      const message = players[1].gameboard.receiveAttack(
-        coordinates[0],
-        coordinates[1]
-      );
-      console.log(message);
-      display.updateCell(event.target.id, message);
-      playGame();
+      if (event.target.className.includes("cell")) {
+        coordinates = getCoordinates(event);
+        console.log({ coordinates });
+        message = players[1].gameboard.receiveAttack(
+          coordinates[0],
+          coordinates[1]
+        );
+        console.log(message);
+        display.updateCell(event.target.id, message);
+        if (message === "Game over!") return alert(message);
+        else playGame();
+      }
     },
     { once: true }
   );
