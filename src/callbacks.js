@@ -128,16 +128,17 @@ const fillPlayerOneBoard = () => {
     let randCol, randRow;
     const orientations = ["row", "col"];
     let randOrientation;
-    do {
+    while (placed !== true) {
       randCol = columns[Math.floor(Math.random() * 10)];
       randRow = Math.floor(Math.random() * 10 + 1);
       randOrientation = orientations[Math.floor((Math.random() * 10) % 2)];
+      console.log(ship.name, randCol, randRow, randOrientation);
       placed = players[0].gameboard.placeShip(
         ship,
         [randCol, randRow],
         randOrientation
       );
-    } while (placed !== true);
+    }
   });
 };
 

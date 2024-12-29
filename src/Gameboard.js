@@ -22,14 +22,12 @@ export default class Gameboard {
     if (ship.length + x <= 10) {
       // create a temporary board for placement operation
       // if placement completes without issues, update the main board
-      const tempBoard = [...this.board];
+      let tempBoard = this.board.map((row) => row.slice());
       let i = x;
 
       // place ship and define safe zone above and below it
       for (i; i < x + ship.length; i++) {
-        if (tempBoard[y][i]) {
-          return "Can't place a ship here!";
-        } else {
+        if (this.board[y][i] === undefined) {
           tempBoard[y][i] = ship.name;
           if (y - 1 >= 0) {
             tempBoard[y - 1][i] = "n";
@@ -37,6 +35,8 @@ export default class Gameboard {
           if (y + 1 <= 9) {
             tempBoard[y + 1][i] = "n";
           }
+        } else {
+          return false;
         }
       }
 
@@ -64,24 +64,22 @@ export default class Gameboard {
         }
       }
 
-      this.board = [...tempBoard];
+      this.board = tempBoard.map((row) => row.slice());
+      return true;
     } else {
-      return "Ship out of bounds!";
+      return false;
     }
-    return true;
   };
   #placeShipCol = (ship, x, y) => {
     if (ship.length + y <= 10) {
       // create a temporary board for placement operation
       // if placement completes without issues, update the main board
-      const tempBoard = [...this.board];
+      let tempBoard = this.board.map((row) => row.slice());
       let i = y;
 
       // place ship and define safe zone to the left and right to it
       for (i; i < y + ship.length; i++) {
-        if (tempBoard[i][x]) {
-          return "Can't place a ship here!";
-        } else {
+        if (this.board[i][x] === undefined) {
           tempBoard[i][x] = ship.name;
           if (x - 1 >= 0) {
             tempBoard[i][x - 1] = "n";
@@ -89,6 +87,8 @@ export default class Gameboard {
           if (x + 1 <= 9) {
             tempBoard[i][x + 1] = "n";
           }
+        } else {
+          return false;
         }
       }
 
@@ -115,11 +115,11 @@ export default class Gameboard {
           tempBoard[k][x + 1] = "n";
         }
       }
-      this.board = [...tempBoard];
+      this.board = tempBoard.map((row) => row.slice());
+      return true;
     } else {
-      return "Ship out of bounds!";
+      return false;
     }
-    return true;
   };
   placeShip = (ship, start, orientation) => {
     const x = this.columns.indexOf(start[0]);
