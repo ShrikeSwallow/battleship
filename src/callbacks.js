@@ -26,6 +26,18 @@ const getCoordinates = (event) => {
   return [col, row];
 };
 
+const cpuTurn = () => {
+  let coordinates = [];
+  let message;
+  const columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+  coordinates.push(columns[Math.floor(Math.random() * 10)]);
+  coordinates.push(Math.floor(Math.random() * 10) + 1);
+  console.log(`[${coordinates[0]}, ${coordinates[1]}]`);
+  message = players[0].gameboard.receiveAttack(coordinates[0], coordinates[1]);
+  display.updateCell(`p1-${coordinates[0]}${coordinates[1]}`, message);
+  return message;
+};
+
 export const playGame = () => {
   let coordinates = [];
   let message;
@@ -40,11 +52,21 @@ export const playGame = () => {
           coordinates[0],
           coordinates[1]
         );
-        console.log(message);
+        console.log(`Your Turn: ${message}`);
         display.updateCell(event.target.id, message);
         if (message === "Game over!") {
           display.toggleNewGameBtn();
-          return alert(message);
+          return alert(`${message}. You won!`);
+        } else {
+          do {
+            message = cpuTurn();
+            console.log(`CPU Turn: ${message}`);
+          } while (message === "Try again!");
+        }
+
+        if (message === "Game over!") {
+          display.toggleNewGameBtn();
+          return alert(`${message}. CPU won!`);
         } else playGame();
       }
     },
