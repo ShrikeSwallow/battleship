@@ -94,6 +94,7 @@ export const startGame = (event) => {
 };
 
 const fillPlayerOneBoard = () => {
+  /*
   players[0].gameboard.placeShip(
     players[0].gameboard.ships[0],
     ["A", 1],
@@ -119,6 +120,25 @@ const fillPlayerOneBoard = () => {
     ["B", 9],
     "row"
   );
+  */
+  const ships = players[0].gameboard.ships;
+  ships.forEach((ship) => {
+    let placed = false;
+    const columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    let randCol, randRow;
+    const orientations = ["row", "col"];
+    let randOrientation;
+    do {
+      randCol = columns[Math.floor(Math.random() * 10)];
+      randRow = Math.floor(Math.random() * 10 + 1);
+      randOrientation = orientations[Math.floor((Math.random() * 10) % 2)];
+      placed = players[0].gameboard.placeShip(
+        ship,
+        [randCol, randRow],
+        randOrientation
+      );
+    } while (placed !== true);
+  });
 };
 
 const fillPlayerTwoBoard = () => {
