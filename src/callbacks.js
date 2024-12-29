@@ -4,6 +4,8 @@ import Player from "./Player.js";
 export const prepNewGame = () => {
   display.toggleNewGameBtn();
   display.toggleStartForm();
+  const boards = document.querySelector(".boards");
+  boards.innerHTML = "";
   const vsP2 = document.querySelector("#vs-p2");
   const vsCpu = document.querySelector("#vs-cpu");
   vsP2.addEventListener("click", display.showP2);
@@ -40,8 +42,10 @@ export const playGame = () => {
         );
         console.log(message);
         display.updateCell(event.target.id, message);
-        if (message === "Game over!") return alert(message);
-        else playGame();
+        if (message === "Game over!") {
+          display.toggleNewGameBtn();
+          return alert(message);
+        } else playGame();
       }
     },
     { once: true }
