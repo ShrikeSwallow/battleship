@@ -166,6 +166,7 @@ export default class Display {
   };
   drawBoards = () => {
     const boards = document.querySelector(".boards");
+    boards.innerHTML = "";
     const playerBoard = document.createElement("div");
     playerBoard.classList.add("board", "player-board");
     const oppBoard = document.createElement("div");
@@ -193,14 +194,6 @@ export default class Display {
               `${players[0].gameboard.board[row][col].toLowerCase()}`
             );
           }
-          /* 
-          const cellContent = document.createElement("p");
-          cellContent.textContent = players[0].gameboard.board[row][
-            col
-          ].substring(0, 3);
-          
-          cell.appendChild(cellContent);
-          */
         }
         playerBoard.appendChild(cell);
       }
@@ -218,5 +211,14 @@ export default class Display {
         oppBoard.appendChild(cell);
       }
     }
+  };
+  updateCell = (cellId, message) => {
+    if (message === "Game over!" || message === "Try again!") return;
+    const cell = document.querySelector(`#${cellId}`);
+    if (message.includes("Hit!")) {
+      cell.textContent = "X";
+    } else if (message === "Miss!") {
+      cell.textContent = "x";
+    } else return;
   };
 }

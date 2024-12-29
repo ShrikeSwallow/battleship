@@ -16,6 +16,36 @@ export const resetGame = () => {
   display.hideP2();
 };
 
+const getCoordinates = (event) => {
+  if (event.target.className.includes("cell")) {
+    const col = event.target.id.substring(3, 4);
+    const row = Number.parseInt(event.target.id.substring(4, 6));
+    console.log(col);
+    console.log(row);
+    return [col, row];
+  }
+};
+
+export const playGame = () => {
+  let coordinates = [];
+  const boards = document.querySelector(".opp-board");
+  boards.addEventListener(
+    "click",
+    (event) => {
+      coordinates = getCoordinates(event);
+      console.log({ coordinates });
+      const message = players[1].gameboard.receiveAttack(
+        coordinates[0],
+        coordinates[1]
+      );
+      console.log(message);
+      display.updateCell(event.target.id, message);
+      playGame();
+    },
+    { once: true }
+  );
+};
+
 export const startGame = (event) => {
   event.preventDefault();
   const p1 = document.querySelector("#p1");
@@ -31,6 +61,7 @@ export const startGame = (event) => {
   fillPlayerTwoBoard();
   display.drawBoards();
   console.log(players);
+  playGame();
 };
 
 const fillPlayerOneBoard = () => {
@@ -87,12 +118,4 @@ const fillPlayerTwoBoard = () => {
     ["B", 9],
     "row"
   );
-};
-
-export const playGame = (event) => {
-  console.log(event.target);
-  if (event.target.id.includes("p2-")) {
-    console.log(event.target.id.substring(3, 4));
-    console.log(event.target.id.substring(4, 6));
-  }
 };

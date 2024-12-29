@@ -16,5 +16,6 @@ const startForm = document.querySelector(".start-form");
 startForm.addEventListener("reset", resetGame);
 startForm.addEventListener("submit", startGame);
 
-const boards = document.querySelector(".boards");
+/*const boards = document.querySelector(".boards");
 boards.addEventListener("click", playGame);
+*/
