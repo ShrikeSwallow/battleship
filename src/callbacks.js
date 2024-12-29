@@ -2,6 +2,7 @@ import { display, players } from "./index.js";
 import Player from "./Player.js";
 
 export const prepNewGame = () => {
+  players.splice(0, 2);
   display.toggleNewGameBtn();
   display.toggleStartForm();
   const boards = document.querySelector(".boards");

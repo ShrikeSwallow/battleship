@@ -3,7 +3,7 @@ import Display from "./Display";
 import { prepNewGame, resetGame, startGame, playGame } from "./callbacks";
 
 export const display = new Display();
-export const players = [];
+export let players = [];
 display.initialize();
 display.drawNewGame();
 display.drawStartForm();
